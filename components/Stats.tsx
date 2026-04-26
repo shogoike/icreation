@@ -25,61 +25,97 @@ function Counter({ to, suffix = '', float = false }: { to: number; suffix?: stri
 }
 
 const items = [
-  { n: 80, suf: '%', label: '相談者の満足度', sub: '「相談してよかった」と回答' },
-  { n: 30, suf: '名', label: '毎月のご紹介実績', sub: '業種を問わず幅広く対応' },
-  { n: 1.2, suf: '倍', label: '平均年収アップ率', sub: '内定者ベース／2025年実績', float: true }
+  {
+    n: 80,
+    suf: '%',
+    label: '相談者の満足度',
+    sub: '「相談してよかった」と回答',
+    bg: 'bg-pop-red',
+    sticker: 'すごい'
+  },
+  {
+    n: 30,
+    suf: '名',
+    label: '毎月のご紹介実績',
+    sub: '業種を問わず幅広く対応',
+    bg: 'bg-pop-blue',
+    sticker: '毎月!!'
+  },
+  {
+    n: 1.2,
+    suf: '倍',
+    label: '平均年収アップ率',
+    sub: '内定者ベース／2025年実績',
+    float: true,
+    bg: 'bg-pop-ink',
+    sticker: 'UP↑'
+  }
 ];
 
 export default function Stats() {
   return (
-    <section className="relative bg-offwhite py-24">
-      <div className="container-mobile">
-        <motion.p
-          initial={{ opacity: 0, y: 10 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: '-20%' }}
-          className="font-serif text-[13px] italic tracking-[0.28em] text-accent-600"
+    <section className="relative overflow-hidden bg-pop-paper py-20">
+      <div aria-hidden className="absolute inset-0 bg-halftone-red opacity-10" />
+
+      <div className="container-mobile relative">
+        <motion.div
+          initial={{ opacity: 0, scale: 0.7, rotate: 6 }}
+          whileInView={{ opacity: 1, scale: 1, rotate: 3 }}
+          viewport={{ once: true, margin: '-15%' }}
+          transition={{ type: 'spring', stiffness: 160 }}
+          className="inline-block rounded-full border-[3px] border-pop-ink bg-pop-yellow px-3 py-1 font-pop text-[11px] tracking-widest text-pop-ink shadow-comic"
         >
-          Numbers
-        </motion.p>
+          ＼ 数字でドン ／
+        </motion.div>
         <motion.h2
-          initial={{ opacity: 0, y: 10 }}
+          initial={{ opacity: 0, y: 12 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: '-20%' }}
+          viewport={{ once: true, margin: '-15%' }}
           transition={{ delay: 0.05 }}
-          className="mt-3 font-mincho text-[26px] font-extrabold leading-[1.5] text-brand-700"
+          className="mt-3 font-pop text-[30px] leading-[1.2] text-pop-ink"
         >
-          選ばれている、理由。
+          選ばれる<span className="marker-red">ワケ</span>、
+          <br />
+          数字で証明します。
         </motion.h2>
 
-        <div className="mt-14">
-          {items.map((s, i) => (
-            <motion.div
-              key={s.label}
-              initial={{ opacity: 0, y: 16 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: '-15%' }}
-              transition={{ delay: i * 0.08, duration: 0.55 }}
-              className="border-t border-brand-100 py-9 last:border-b"
-            >
-              <div className="flex items-baseline justify-between gap-4">
-                <div className="flex-1">
-                  <div className="text-[13px] font-bold tracking-wide text-brand-500">
-                    {s.label}
+        <div className="mt-12 space-y-6">
+          {items.map((s, i) => {
+            const tilt = i % 2 === 0 ? '-rotate-1' : 'rotate-1';
+            return (
+              <motion.div
+                key={s.label}
+                initial={{ opacity: 0, y: 18, scale: 0.92 }}
+                whileInView={{ opacity: 1, y: 0, scale: 1 }}
+                viewport={{ once: true, margin: '-12%' }}
+                transition={{ delay: i * 0.1, type: 'spring', stiffness: 140 }}
+                className={`relative ${tilt}`}
+              >
+                <div
+                  className={`relative overflow-hidden rounded-2xl border-[3px] border-pop-ink ${s.bg} p-5 text-white shadow-comic-lg`}
+                >
+                  <div aria-hidden className="absolute inset-0 bg-halftone-white opacity-25" />
+                  <div className="relative flex items-end justify-between gap-3">
+                    <div className="flex-1">
+                      <div className="font-pop text-[14px] tracking-wide">
+                        {s.label}
+                      </div>
+                      <div className="mt-1 text-[11.5px] leading-relaxed opacity-90">
+                        {s.sub}
+                      </div>
+                    </div>
+                    <div className="font-pop text-[64px] leading-none text-pop-yellow drop-shadow-[3px_3px_0_#1A1A1A]">
+                      <Counter to={s.n} float={s.float} />
+                      <span className="ml-0.5 text-[26px] text-white">{s.suf}</span>
+                    </div>
                   </div>
-                  <div className="mt-1.5 text-[12px] leading-relaxed text-muted">
-                    {s.sub}
-                  </div>
-                </div>
-                <div className="font-serif text-[68px] font-extrabold italic leading-none tracking-tight text-brand-700">
-                  <Counter to={s.n} float={s.float} />
-                  <span className="ml-0.5 text-[26px] font-semibold not-italic text-accent-600">
-                    {s.suf}
+                  <span className="absolute -right-2 -top-2 inline-block rotate-[10deg] rounded-md border-[2px] border-pop-ink bg-pop-yellow px-2 py-0.5 font-pop text-[10px] text-pop-ink shadow-comic">
+                    {s.sticker}
                   </span>
                 </div>
-              </div>
-            </motion.div>
-          ))}
+              </motion.div>
+            );
+          })}
         </div>
       </div>
     </section>

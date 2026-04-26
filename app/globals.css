@@ -11,6 +11,10 @@
   --offwhite: #FCFAF7;
   --ink: #102033;
   --muted: #6B7280;
+  --pop-red: #E81E2C;
+  --pop-blue: #1F4FE5;
+  --pop-yellow: #FFD400;
+  --pop-ink: #1A1A1A;
 }
 
 html {
@@ -19,15 +23,14 @@ html {
 }
 
 body {
-  background: #FCFAF7;
-  color: #102033;
+  background: #FFFBF1;
+  color: #1A1A1A;
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
   font-feature-settings: 'palt' 1, 'pkna' 1, 'kern' 1;
   letter-spacing: 0.01em;
 }
 
-/* 和文ディスプレイのカーニング・トラッキング最適化 */
 .font-display, .font-mincho {
   font-feature-settings: 'palt' 1, 'pkna' 1, 'kern' 1, 'jp80' 1;
 }
@@ -76,6 +79,134 @@ body {
   .mask-fade-b {
     -webkit-mask-image: linear-gradient(to bottom, black 70%, transparent);
             mask-image: linear-gradient(to bottom, black 70%, transparent);
+  }
+
+  /* ─────────────────────────────────
+     ポップ・コミカル ユーティリティ
+     ───────────────────────────────── */
+
+  /* 明朝の代わりに使う、ぽってりタイトル */
+  .text-stroke-ink {
+    -webkit-text-stroke: 2px #1A1A1A;
+    paint-order: stroke fill;
+  }
+  .text-stroke-thick {
+    -webkit-text-stroke: 3px #1A1A1A;
+    paint-order: stroke fill;
+  }
+
+  /* マンガ風 ハーフトーン（ドット）*/
+  .bg-halftone-red {
+    background-image: radial-gradient(rgba(232,30,44,0.55) 1.4px, transparent 1.6px);
+    background-size: 8px 8px;
+  }
+  .bg-halftone-blue {
+    background-image: radial-gradient(rgba(31,79,229,0.55) 1.4px, transparent 1.6px);
+    background-size: 8px 8px;
+  }
+  .bg-halftone-ink {
+    background-image: radial-gradient(rgba(26,26,26,0.45) 1.4px, transparent 1.6px);
+    background-size: 8px 8px;
+  }
+  .bg-halftone-white {
+    background-image: radial-gradient(rgba(255,255,255,0.6) 1.4px, transparent 1.6px);
+    background-size: 8px 8px;
+  }
+
+  /* ストライプ（流線・集中線の代用） */
+  .bg-stripe-red {
+    background: repeating-linear-gradient(135deg, #E81E2C 0 22px, #B5121F 22px 44px);
+  }
+  .bg-stripe-blue {
+    background: repeating-linear-gradient(-135deg, #1F4FE5 0 22px, #0F2F9C 22px 44px);
+  }
+  .bg-stripe-yellow {
+    background: repeating-linear-gradient(45deg, #FFD400 0 18px, #FFE94D 18px 36px);
+  }
+
+  /* 集中線（放射状）*/
+  .bg-radial-burst-red {
+    background:
+      repeating-conic-gradient(from 0deg, rgba(255,255,255,0.0) 0deg 4deg, rgba(255,255,255,0.18) 4deg 8deg) center / cover,
+      #E81E2C;
+  }
+  .bg-radial-burst-blue {
+    background:
+      repeating-conic-gradient(from 0deg, rgba(255,255,255,0.0) 0deg 4deg, rgba(255,255,255,0.18) 4deg 8deg) center / cover,
+      #1F4FE5;
+  }
+  .bg-radial-burst-yellow {
+    background:
+      repeating-conic-gradient(from 0deg, rgba(0,0,0,0.0) 0deg 4deg, rgba(0,0,0,0.10) 4deg 8deg) center / cover,
+      #FFD400;
+  }
+
+  /* マーカー風アンダーライン（手書きハイライト） */
+  .marker-yellow {
+    background-image: linear-gradient(transparent 60%, #FFD400 60% 92%, transparent 92%);
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    padding: 0 0.18em;
+  }
+  .marker-red {
+    background-image: linear-gradient(transparent 60%, rgba(232,30,44,0.85) 60% 92%, transparent 92%);
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    padding: 0 0.18em;
+    color: #fff;
+  }
+  .marker-blue {
+    background-image: linear-gradient(transparent 60%, rgba(31,79,229,0.85) 60% 92%, transparent 92%);
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    padding: 0 0.18em;
+    color: #fff;
+  }
+
+  /* ぐるぐるバッジ用 円形テキスト下地 */
+  .badge-burst {
+    clip-path: polygon(
+      50% 0%, 58% 8%, 68% 4%, 72% 14%, 84% 14%, 84% 26%, 96% 30%, 90% 40%,
+      100% 50%, 90% 60%, 96% 70%, 84% 74%, 84% 86%, 72% 86%, 68% 96%, 58% 92%,
+      50% 100%, 42% 92%, 32% 96%, 28% 86%, 16% 86%, 16% 74%, 4% 70%, 10% 60%,
+      0% 50%, 10% 40%, 4% 30%, 16% 26%, 16% 14%, 28% 14%, 32% 4%, 42% 8%
+    );
+  }
+
+  /* 吹き出し（左下に三角の尻尾） */
+  .speech-bubble {
+    position: relative;
+  }
+  .speech-bubble::after {
+    content: '';
+    position: absolute;
+    left: 28px;
+    bottom: -14px;
+    width: 22px;
+    height: 14px;
+    background: inherit;
+    clip-path: polygon(0 0, 100% 0, 30% 100%);
+  }
+  .speech-bubble-r::after {
+    left: auto;
+    right: 28px;
+    clip-path: polygon(0 0, 100% 0, 70% 100%);
+  }
+
+  /* マンガ風の太い黒枠＋オフセット影 */
+  .comic-border {
+    border: 3px solid #1A1A1A;
+  }
+  .comic-border-thin {
+    border: 2px solid #1A1A1A;
+  }
+
+  /* 斜め切り取りVS */
+  .clip-diagonal-l {
+    clip-path: polygon(0 0, 100% 0, 75% 100%, 0% 100%);
+  }
+  .clip-diagonal-r {
+    clip-path: polygon(25% 0, 100% 0, 100% 100%, 0% 100%);
   }
 }
 

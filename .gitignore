@@ -11,3 +11,7 @@ out
 v2-*.png
 v3-*.png
 0[0-9]-*.png
+
+# 個人設定 / 参考素材（コミット不要）
+.claude/
+sozai/

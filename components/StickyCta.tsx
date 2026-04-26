@@ -22,10 +22,10 @@ export default function StickyCta() {
       <div className="container-mobile pb-3 pt-2">
         <a
           href="#cta"
-          className="flex items-center justify-between gap-3 rounded-md bg-brand-700 px-5 py-4 font-bold text-white shadow-[0_-8px_30px_rgba(11,42,74,0.18)]"
+          className="flex items-center justify-between gap-3 rounded-2xl border-[3px] border-pop-ink bg-pop-yellow px-5 py-3.5 font-pop text-pop-ink shadow-comic-lg"
         >
-          <span className="text-[14px] tracking-wide">無料で転職相談をする</span>
-          <ArrowRight className="h-4 w-4 text-accent-300" />
+          <span className="text-[14.5px] tracking-wide">無料で転職相談する</span>
+          <ArrowRight className="h-4 w-4" strokeWidth={3} />
         </a>
       </div>
     </motion.div>

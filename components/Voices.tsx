@@ -5,58 +5,81 @@ import { motion } from 'framer-motion';
 const voices = [
   {
     attr: '20代後半 / 営業職',
-    text: '前職での悩みを丁寧に聞いてもらえたことで、条件だけでなく働き方まで整理できました。'
+    text: '条件だけじゃなくて、働き方まで整理できた！',
+    emoji: '🙌',
+    color: 'bg-pop-red'
   },
   {
     attr: '30代前半 / 事務職',
-    text: '求人を押しつけられる感じがなく、自分のペースで相談できたのが安心でした。'
+    text: '押しつけ感ゼロで、自分のペースで進められた。',
+    emoji: '☺️',
+    color: 'bg-pop-blue'
   },
   {
-    attr: '30代後半 / 看護→企画職',
-    text: 'まったく違う業界への転職でしたが、強みを丁寧に翻訳してくれて、自信を持って臨めました。'
+    attr: '30代後半 / 看護→企画',
+    text: '異業種でも強みを翻訳してくれて自信つきました。',
+    emoji: '✨',
+    color: 'bg-pop-ink'
   }
 ];
 
 export default function Voices() {
   return (
-    <section className="relative bg-brand-700 py-24 text-white">
-      <div className="container-mobile">
-        <motion.p
-          initial={{ opacity: 0, y: 10 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: '-20%' }}
-          className="font-serif text-[13px] italic tracking-[0.28em] text-accent-300"
+    <section className="relative overflow-hidden bg-pop-blue py-20 text-white">
+      <div aria-hidden className="absolute inset-0 bg-halftone-white opacity-25" />
+
+      <div className="container-mobile relative">
+        <motion.div
+          initial={{ opacity: 0, scale: 0.7, rotate: 8 }}
+          whileInView={{ opacity: 1, scale: 1, rotate: 4 }}
+          viewport={{ once: true, margin: '-15%' }}
+          transition={{ type: 'spring', stiffness: 160 }}
+          className="inline-block rounded-full border-[3px] border-pop-ink bg-pop-yellow px-3 py-1 font-pop text-[11px] tracking-widest text-pop-ink shadow-comic"
         >
-          Voices
-        </motion.p>
+          ＼ リアルな声 ／
+        </motion.div>
         <motion.h2
-          initial={{ opacity: 0, y: 10 }}
+          initial={{ opacity: 0, y: 12 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: '-20%' }}
+          viewport={{ once: true, margin: '-15%' }}
           transition={{ delay: 0.05 }}
-          className="mt-3 font-mincho text-[26px] font-extrabold leading-[1.5]"
+          className="mt-3 font-pop text-[30px] leading-[1.2] text-stroke-thick drop-shadow-[3px_3px_0_#1A1A1A]"
         >
-          ご利用者の声。
+          利用者さんの
+          <br />
+          <span className="text-pop-yellow">ナマの声。</span>
         </motion.h2>
 
-        <ul className="mt-12 divide-y divide-white/15 border-y border-white/15">
-          {voices.map((v, i) => (
-            <motion.li
-              key={v.attr + i}
-              initial={{ opacity: 0, y: 12 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: '-10%' }}
-              transition={{ delay: i * 0.08 }}
-              className="py-9"
-            >
-              <div className="font-serif text-[12px] italic tracking-[0.18em] text-accent-300">
-                {v.attr}
-              </div>
-              <blockquote className="mt-3 font-mincho text-[15.5px] leading-[2] text-white/95">
-                {v.text}
-              </blockquote>
-            </motion.li>
-          ))}
+        <ul className="mt-12 space-y-7">
+          {voices.map((v, i) => {
+            const tilt = i % 2 === 0 ? '-rotate-2' : 'rotate-2';
+            const align = i % 2 === 0 ? 'mr-auto' : 'ml-auto';
+            const tail = i % 2 === 0 ? '' : 'speech-bubble-r';
+            return (
+              <motion.li
+                key={v.attr + i}
+                initial={{ opacity: 0, y: 16, scale: 0.92 }}
+                whileInView={{ opacity: 1, y: 0, scale: 1 }}
+                viewport={{ once: true, margin: '-10%' }}
+                transition={{ delay: i * 0.1, type: 'spring', stiffness: 140 }}
+                className={`relative max-w-[92%] ${align} ${tilt}`}
+              >
+                <div className={`speech-bubble ${tail} rounded-2xl border-[3px] border-pop-ink bg-white px-4 py-4 text-pop-ink shadow-comic-lg`}>
+                  <div className="flex items-center gap-2">
+                    <span className="grid h-10 w-10 place-items-center rounded-full border-[3px] border-pop-ink bg-pop-yellow text-[20px] shadow-comic">
+                      {v.emoji}
+                    </span>
+                    <div className="font-pop text-[11px] text-pop-ink/60">
+                      {v.attr}
+                    </div>
+                  </div>
+                  <p className="mt-3 font-pop text-[15.5px] leading-tight">
+                    {v.text}
+                  </p>
+                </div>
+              </motion.li>
+            );
+          })}
         </ul>
       </div>
     </section>

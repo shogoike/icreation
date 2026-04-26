@@ -5,74 +5,90 @@ import { useState } from 'react';
 import { Plus } from 'lucide-react';
 
 const faqs = [
-  { q: '相談だけでも利用できますか？', a: 'もちろん可能です。「転職するか決めていない」段階のご相談を歓迎しています。無理な勧誘は一切いたしません。' },
-  { q: '料金はかかりますか？', a: '求職者の方からは一切費用をいただきません。すべてのサポートを無料でご利用いただけます。' },
-  { q: '対応エリアは？', a: '全国対応。オンライン面談を中心に、関東・関西は対面でのご相談も可能です。' },
-  { q: '未経験の業種にも転職できますか？', a: '可能です。実際に異業種への転職事例も多数。あなたの強みを別の文脈で活かす提案を得意としています。' },
-  { q: '在職中でも相談できますか？', a: 'むしろ在職中のご相談が大多数です。平日夜・土日もご対応しております。' },
-  { q: '個人情報の取り扱いは？', a: 'ご本人の同意なしに企業へ情報を共有することはありません。プライバシーマーク取得済みです。' }
+  { q: '相談だけでも使える？', a: 'もちろんOK！「転職するか決めてない」段階のご相談、むしろ歓迎です。無理な勧誘ゼロ。' },
+  { q: 'お金、かかる？', a: '求職者の方は完全無料。サポート全部タダで使えます。' },
+  { q: '対応エリアは？', a: '全国対応。オンライン中心、関東・関西は対面もOK。' },
+  { q: '未経験の業種は無理？', a: 'ぜんぜんイケます。実際、異業種転職の事例多数。強みを別文脈で活かす提案が得意。' },
+  { q: '在職中でも相談できる？', a: 'むしろ在職中が多数派。平日夜・土日も対応してます。' },
+  { q: '個人情報、大丈夫？', a: '同意なしに企業へ情報を流すことは絶対にナシ。Pマーク取得済み。' }
 ];
 
 export default function Faq() {
   const [open, setOpen] = useState<number | null>(0);
 
   return (
-    <section className="relative bg-offwhite py-24">
-      <div className="container-mobile">
-        <motion.p
-          initial={{ opacity: 0, y: 10 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: '-20%' }}
-          className="font-serif text-[13px] italic tracking-[0.28em] text-accent-600"
+    <section className="relative overflow-hidden bg-pop-paper py-20">
+      <div aria-hidden className="absolute inset-0 bg-halftone-red opacity-10" />
+
+      <div className="container-mobile relative">
+        <motion.div
+          initial={{ opacity: 0, scale: 0.7, rotate: -6 }}
+          whileInView={{ opacity: 1, scale: 1, rotate: -3 }}
+          viewport={{ once: true, margin: '-15%' }}
+          transition={{ type: 'spring', stiffness: 160 }}
+          className="inline-block rounded-full border-[3px] border-pop-ink bg-pop-red px-3 py-1 font-pop text-[11px] tracking-widest text-white shadow-comic"
         >
-          FAQ
-        </motion.p>
+          ＼ よくある質問 ／
+        </motion.div>
         <motion.h2
-          initial={{ opacity: 0, y: 10 }}
+          initial={{ opacity: 0, y: 12 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: '-20%' }}
+          viewport={{ once: true, margin: '-15%' }}
           transition={{ delay: 0.05 }}
-          className="mt-3 font-mincho text-[26px] font-extrabold leading-[1.5] text-brand-700"
+          className="mt-3 font-pop text-[30px] leading-[1.2] text-pop-ink"
         >
-          よくあるご質問。
+          みんなの<span className="marker-yellow">疑問</span>、
+          <br />
+          ぜんぶ答えます。
         </motion.h2>
 
-        <ul className="mt-12 divide-y divide-brand-100 border-y border-brand-100">
+        <ul className="mt-10 space-y-3">
           {faqs.map((f, i) => {
             const isOpen = open === i;
             return (
               <li key={f.q}>
-                <button
-                  type="button"
-                  onClick={() => setOpen(isOpen ? null : i)}
-                  className="flex w-full items-start justify-between gap-4 py-5 text-left"
-                  aria-expanded={isOpen}
-                >
-                  <span className="flex items-baseline gap-3">
-                    <span className="font-serif text-[14px] italic font-semibold text-accent-600">Q.</span>
-                    <span className="text-[14.5px] font-bold text-brand-700">{f.q}</span>
-                  </span>
-                  <motion.span
-                    animate={{ rotate: isOpen ? 45 : 0 }}
-                    className="mt-1 text-brand-500"
+                <div className="rounded-2xl border-[3px] border-pop-ink bg-white shadow-comic">
+                  <button
+                    type="button"
+                    onClick={() => setOpen(isOpen ? null : i)}
+                    className="flex w-full items-start justify-between gap-3 px-4 py-4 text-left"
+                    aria-expanded={isOpen}
                   >
-                    <Plus className="h-4 w-4" strokeWidth={2.2} />
-                  </motion.span>
-                </button>
-                <AnimatePresence initial={false}>
-                  {isOpen && (
-                    <motion.div
-                      initial={{ height: 0, opacity: 0 }}
-                      animate={{ height: 'auto', opacity: 1 }}
-                      exit={{ height: 0, opacity: 0 }}
-                      transition={{ duration: 0.25, ease: 'easeOut' }}
+                    <span className="flex items-baseline gap-2.5">
+                      <span className="grid h-7 w-7 shrink-0 place-items-center rounded-full border-[2px] border-pop-ink bg-pop-red font-pop text-[12px] text-white">
+                        Q
+                      </span>
+                      <span className="font-pop text-[14.5px] leading-tight text-pop-ink">
+                        {f.q}
+                      </span>
+                    </span>
+                    <motion.span
+                      animate={{ rotate: isOpen ? 45 : 0 }}
+                      className="mt-0.5 grid h-7 w-7 shrink-0 place-items-center rounded-full border-[2px] border-pop-ink bg-pop-yellow text-pop-ink"
                     >
-                      <div className="flex items-baseline gap-3 pb-6 pl-7">
-                        <p className="text-[13.5px] leading-[2] text-muted">{f.a}</p>
-                      </div>
-                    </motion.div>
-                  )}
-                </AnimatePresence>
+                      <Plus className="h-3.5 w-3.5" strokeWidth={3} />
+                    </motion.span>
+                  </button>
+                  <AnimatePresence initial={false}>
+                    {isOpen && (
+                      <motion.div
+                        initial={{ height: 0, opacity: 0 }}
+                        animate={{ height: 'auto', opacity: 1 }}
+                        exit={{ height: 0, opacity: 0 }}
+                        transition={{ duration: 0.25, ease: 'easeOut' }}
+                      >
+                        <div className="border-t-[2px] border-dashed border-pop-ink/30 px-4 pb-4 pt-3">
+                          <div className="flex items-baseline gap-2.5">
+                            <span className="grid h-7 w-7 shrink-0 place-items-center rounded-full border-[2px] border-pop-ink bg-pop-blue font-pop text-[12px] text-white">
+                              A
+                            </span>
+                            <p className="text-[13.5px] leading-[1.85] text-pop-ink/85">{f.a}</p>
+                          </div>
+                        </div>
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
+                </div>
               </li>
             );
           })}

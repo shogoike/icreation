@@ -1,4 +1,5 @@
 import Hero from '@/components/Hero';
+import Quiz from '@/components/Quiz';
 import Stats from '@/components/Stats';
 import Concerns from '@/components/Concerns';
 import Strengths from '@/components/Strengths';
@@ -14,10 +15,11 @@ import StickyCta from '@/components/StickyCta';
 
 export default function Home() {
   return (
-    <main className="relative bg-offwhite">
+    <main className="relative bg-pop-paper">
       <Hero />
-      <Stats />
+      <Quiz />
       <Concerns />
+      <Stats />
       <Strengths />
       <Steps />
       <Cases />
