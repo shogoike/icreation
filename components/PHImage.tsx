@@ -3,7 +3,7 @@
 import Image, { ImageProps } from 'next/image';
 import { Slot } from '@/lib/images';
 
-type Props = Omit<ImageProps, 'src' | 'alt'> & {
+type Props = Omit<ImageProps, 'src' | 'alt' | 'slot'> & {
   slot: Slot;
   alt?: string;
   showLabel?: boolean;
