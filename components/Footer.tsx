@@ -20,10 +20,10 @@ export default function Footer() {
         </p>
 
         <ul className="mt-10 grid grid-cols-2 gap-y-3 border-t-[2px] border-dashed border-white/30 pt-8 font-pop text-[13px] text-white/85">
-          <li><a href="https://icreation-i.com/" target="_blank" rel="noreferrer">会社概要</a></li>
+          <li><a href="/company">会社概要</a></li>
           <li><a href="#cta">お問い合わせ</a></li>
-          <li><a href="#">プライバシーポリシー</a></li>
-          <li><a href="#">利用規約</a></li>
+          <li><a href="/privacy">プライバシーポリシー</a></li>
+          <li><a href="https://icreation-i.com/" target="_blank" rel="noreferrer">コーポレートサイト</a></li>
         </ul>
 
         <div className="mt-12 text-[10.5px] tracking-wider text-white/45">

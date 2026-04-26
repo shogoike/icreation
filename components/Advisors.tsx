@@ -1,6 +1,7 @@
 'use client';
 
 import { motion } from 'framer-motion';
+import Image from 'next/image';
 
 export default function Advisors() {
   return (
@@ -41,8 +42,14 @@ export default function Advisors() {
             <div className="relative bg-pop-blue p-6">
               <div aria-hidden className="absolute inset-0 bg-halftone-white opacity-25" />
               <div className="relative flex items-center gap-4">
-                <div className="grid h-24 w-24 shrink-0 place-items-center rounded-2xl border-[3px] border-pop-ink bg-pop-yellow text-[56px] shadow-comic">
-                  👩‍💼
+                <div className="grid h-24 w-24 shrink-0 place-items-center overflow-hidden rounded-2xl border-[3px] border-pop-ink bg-white shadow-comic">
+                  <Image
+                    src="/images/icons/person-smile.png"
+                    alt=""
+                    width={200}
+                    height={200}
+                    className="h-[84px] w-[84px] object-contain"
+                  />
                 </div>
                 <div className="text-white">
                   <div className="font-pop text-[11px] text-pop-yellow drop-shadow-[1px_1px_0_#1A1A1A]">

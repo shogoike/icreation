@@ -2,6 +2,7 @@
 
 import { motion, AnimatePresence } from 'framer-motion';
 import { useState } from 'react';
+import Image from 'next/image';
 import { ArrowRight, RotateCcw } from 'lucide-react';
 
 type Side = 'salary' | 'worklife';
@@ -28,14 +29,14 @@ const results = {
   salary: {
     label: '年収重視派',
     color: 'red' as const,
-    emoji: '💰',
+    icon: '/images/icons/money.png',
     catch: 'バリバリ稼ぐ派！',
     desc: '年収・成長・裁量。あなたには「攻めの転職」がハマる求人を厳選してご紹介します。'
   },
   worklife: {
     label: '働き方重視派',
     color: 'blue' as const,
-    emoji: '🌿',
+    icon: '/images/icons/nature.png',
     catch: 'のびのび働く派！',
     desc: '残業・人間関係・通勤。求人票では分からない「中の空気」まで踏まえて提案します。'
   }
@@ -177,8 +178,14 @@ export default function Quiz() {
                     診断結果
                   </div>
                   <div className="mt-3 flex items-center gap-3">
-                    <span className="grid h-16 w-16 place-items-center rounded-2xl border-[3px] border-pop-ink bg-white text-[36px] shadow-comic">
-                      {result.emoji}
+                    <span className="grid h-16 w-16 place-items-center overflow-hidden rounded-2xl border-[3px] border-pop-ink bg-white shadow-comic">
+                      <Image
+                        src={result.icon}
+                        alt=""
+                        width={160}
+                        height={160}
+                        className="h-[58px] w-[58px] object-contain"
+                      />
                     </span>
                     <div>
                       <div className="font-pop text-[14px] text-pop-yellow drop-shadow-[2px_2px_0_#1A1A1A]">

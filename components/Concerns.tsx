@@ -1,13 +1,14 @@
 'use client';
 
 import { motion } from 'framer-motion';
+import Image from 'next/image';
 
 const items = [
-  { text: '今の職場、続けるべき…？', emoji: '😩' },
-  { text: '自分に合う求人、わからん！', emoji: '🤯' },
-  { text: '転職、失敗が怖すぎ…', emoji: '😱' },
-  { text: '条件だけで決めて後悔したくない', emoji: '🥲' },
-  { text: '忙しすぎて求人見る時間ない！', emoji: '⏰' }
+  { text: '今の職場、続けるべき…？', icon: '/images/icons/person-point.png' },
+  { text: '自分に合う求人、わからん！', icon: '/images/icons/notebook-pen.png' },
+  { text: '転職、失敗が怖すぎ…', icon: '/images/icons/person-card.png' },
+  { text: '条件だけで決めて後悔したくない', icon: '/images/icons/money.png' },
+  { text: '忙しすぎて求人見る時間ない！', icon: '/images/icons/person-laptop.png' }
 ];
 
 export default function Concerns() {
@@ -52,8 +53,14 @@ export default function Concerns() {
                 transition={{ delay: i * 0.08, type: 'spring', stiffness: 150 }}
                 className={`relative flex max-w-[88%] items-center gap-3 ${ml} ${tilt}`}
               >
-                <span className="grid h-12 w-12 shrink-0 place-items-center rounded-full border-[3px] border-pop-ink bg-pop-yellow text-[24px] shadow-comic">
-                  {item.emoji}
+                <span className="grid h-12 w-12 shrink-0 place-items-center overflow-hidden rounded-full border-[3px] border-pop-ink bg-white shadow-comic">
+                  <Image
+                    src={item.icon}
+                    alt=""
+                    width={120}
+                    height={120}
+                    className="h-[40px] w-[40px] object-contain"
+                  />
                 </span>
                 <div
                   className={`speech-bubble ${tail} flex-1 rounded-2xl border-[3px] border-pop-ink bg-white px-4 py-3 font-pop text-[15px] leading-tight text-pop-ink shadow-comic`}

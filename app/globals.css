@@ -142,25 +142,29 @@ body {
   }
 
   /* マーカー風アンダーライン（手書きハイライト） */
+  /* 黄色は地色を活かす下線ハイライト（黒文字を維持） */
   .marker-yellow {
-    background-image: linear-gradient(transparent 60%, #FFD400 60% 92%, transparent 92%);
+    background-image: linear-gradient(transparent 55%, #FFD400 55% 95%, transparent 95%);
     background-repeat: no-repeat;
     background-size: 100% 100%;
     padding: 0 0.18em;
   }
+  /* 赤・青は文字色を白に置く塗りつぶし型なので、文字全体を覆う */
   .marker-red {
-    background-image: linear-gradient(transparent 60%, rgba(232,30,44,0.85) 60% 92%, transparent 92%);
-    background-repeat: no-repeat;
-    background-size: 100% 100%;
-    padding: 0 0.18em;
+    background-color: rgba(232,30,44,0.95);
+    padding: 0.05em 0.22em;
+    border-radius: 4px;
     color: #fff;
+    box-decoration-break: clone;
+    -webkit-box-decoration-break: clone;
   }
   .marker-blue {
-    background-image: linear-gradient(transparent 60%, rgba(31,79,229,0.85) 60% 92%, transparent 92%);
-    background-repeat: no-repeat;
-    background-size: 100% 100%;
-    padding: 0 0.18em;
+    background-color: rgba(31,79,229,0.95);
+    padding: 0.05em 0.22em;
+    border-radius: 4px;
     color: #fff;
+    box-decoration-break: clone;
+    -webkit-box-decoration-break: clone;
   }
 
   /* ぐるぐるバッジ用 円形テキスト下地 */
