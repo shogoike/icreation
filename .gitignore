@@ -1,0 +1,13 @@
+node_modules
+.next
+out
+.env*
+!.env.example
+.DS_Store
+*.log
+
+# Playwright / 動作確認の検証用画像（コミット不要）
+.playwright-mcp/
+v2-*.png
+v3-*.png
+0[0-9]-*.png
