@@ -1,13 +1,14 @@
 'use client';
 
 import { motion } from 'framer-motion';
+import Image from 'next/image';
 
 const items = [
   {
     n: '01',
     title: '希望、まるっと整理',
     desc: '給与・勤務地だけじゃ足りない。働き方も将来像も、初回90分でぜんぶ言語化。',
-    emoji: '🗒️',
+    icon: '/images/icons/notebook-pen.png',
     bg: 'bg-pop-red',
     badge: 'まずココ'
   },
@@ -15,7 +16,7 @@ const items = [
     n: '02',
     title: '空気まで読んで提案',
     desc: '求人票では分からない雰囲気・相性・社内のリアル。中の人のクセまで踏まえてご紹介。',
-    emoji: '🎯',
+    icon: '/images/icons/tray-serve.png',
     bg: 'bg-pop-blue',
     badge: 'ここが本気'
   },
@@ -23,7 +24,7 @@ const items = [
     n: '03',
     title: '入職まで併走',
     desc: '応募・面接・条件交渉・退職交渉まで丸ごとサポート。年収交渉も担当者が代行。',
-    emoji: '🤝',
+    icon: '/images/icons/person-smile.png',
     bg: 'bg-pop-yellow',
     badge: '最後まで'
   }
@@ -81,8 +82,14 @@ export default function Strengths() {
                   }`}
                 />
                 <div className="relative flex items-start gap-3">
-                  <span className="grid h-14 w-14 shrink-0 place-items-center rounded-2xl border-[3px] border-pop-ink bg-white text-[28px] shadow-comic">
-                    {s.emoji}
+                  <span className="grid h-16 w-16 shrink-0 place-items-center overflow-hidden rounded-2xl border-[3px] border-pop-ink bg-white shadow-comic">
+                    <Image
+                      src={s.icon}
+                      alt=""
+                      width={120}
+                      height={120}
+                      className="h-[58px] w-[58px] object-contain"
+                    />
                   </span>
                   <div className="flex-1 pt-0.5">
                     <div className={`font-pop text-[12px] ${isYellow ? 'opacity-70' : 'opacity-80'}`}>

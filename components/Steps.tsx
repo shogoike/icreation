@@ -1,12 +1,13 @@
 'use client';
 
 import { motion } from 'framer-motion';
+import Image from 'next/image';
 
 const steps = [
-  { n: '01', title: '無料相談', desc: '現状や希望をオンラインでヒアリング', emoji: '💬', color: 'bg-pop-red' },
-  { n: '02', title: '求人提案', desc: '条件と適性に合う求人をご紹介', emoji: '✨', color: 'bg-pop-blue' },
-  { n: '03', title: '応募・面接', desc: '書類添削・想定問答まで徹底サポート', emoji: '📝', color: 'bg-pop-red' },
-  { n: '04', title: '内定・入職', desc: '年収交渉・退職交渉のアドバイスまで', emoji: '🎉', color: 'bg-pop-blue' }
+  { n: '01', title: '無料相談', desc: '現状や希望をオンラインでヒアリング', icon: '/images/icons/person-laptop.png', color: 'bg-pop-red' },
+  { n: '02', title: '求人提案', desc: '条件と適性に合う求人をご紹介', icon: '/images/icons/person-point.png', color: 'bg-pop-blue' },
+  { n: '03', title: '応募・面接', desc: '書類添削・想定問答まで徹底サポート', icon: '/images/icons/person-card.png', color: 'bg-pop-red' },
+  { n: '04', title: '内定・入職', desc: '年収交渉・退職交渉のアドバイスまで', icon: '/images/icons/confetti.gif', color: 'bg-pop-blue' }
 ];
 
 export default function Steps() {
@@ -52,8 +53,15 @@ export default function Steps() {
                   className={`relative flex items-center gap-4 rounded-2xl border-[3px] border-pop-ink ${s.color} p-4 text-white shadow-comic-lg`}
                 >
                   <div aria-hidden className="absolute inset-0 rounded-2xl bg-halftone-white opacity-20" />
-                  <span className="relative grid h-14 w-14 shrink-0 place-items-center rounded-full border-[3px] border-pop-ink bg-white text-[24px] shadow-comic">
-                    {s.emoji}
+                  <span className="relative grid h-14 w-14 shrink-0 place-items-center overflow-hidden rounded-full border-[3px] border-pop-ink bg-white shadow-comic">
+                    <Image
+                      src={s.icon}
+                      alt=""
+                      width={120}
+                      height={120}
+                      unoptimized={s.icon.endsWith('.gif')}
+                      className="h-[50px] w-[50px] object-contain"
+                    />
                   </span>
                   <div className="relative flex-1">
                     <div className="font-pop text-[12px] text-pop-yellow drop-shadow-[1px_1px_0_#1A1A1A]">

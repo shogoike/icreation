@@ -1,24 +1,25 @@
 'use client';
 
 import { motion } from 'framer-motion';
+import Image from 'next/image';
 
 const voices = [
   {
     attr: '20代後半 / 営業職',
     text: '条件だけじゃなくて、働き方まで整理できた！',
-    emoji: '🙌',
+    icon: '/images/icons/person-smile.png',
     color: 'bg-pop-red'
   },
   {
     attr: '30代前半 / 事務職',
     text: '押しつけ感ゼロで、自分のペースで進められた。',
-    emoji: '☺️',
+    icon: '/images/icons/person-card.png',
     color: 'bg-pop-blue'
   },
   {
     attr: '30代後半 / 看護→企画',
     text: '異業種でも強みを翻訳してくれて自信つきました。',
-    emoji: '✨',
+    icon: '/images/icons/person-point.png',
     color: 'bg-pop-ink'
   }
 ];
@@ -66,8 +67,14 @@ export default function Voices() {
               >
                 <div className={`speech-bubble ${tail} rounded-2xl border-[3px] border-pop-ink bg-white px-4 py-4 text-pop-ink shadow-comic-lg`}>
                   <div className="flex items-center gap-2">
-                    <span className="grid h-10 w-10 place-items-center rounded-full border-[3px] border-pop-ink bg-pop-yellow text-[20px] shadow-comic">
-                      {v.emoji}
+                    <span className="grid h-12 w-12 place-items-center overflow-hidden rounded-full border-[3px] border-pop-ink bg-pop-yellow shadow-comic">
+                      <Image
+                        src={v.icon}
+                        alt=""
+                        width={120}
+                        height={120}
+                        className="h-[44px] w-[44px] object-contain"
+                      />
                     </span>
                     <div className="font-pop text-[11px] text-pop-ink/60">
                       {v.attr}

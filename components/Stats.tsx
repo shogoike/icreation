@@ -2,6 +2,7 @@
 
 import { motion, useInView, useMotionValue, useTransform, animate } from 'framer-motion';
 import { useEffect, useRef } from 'react';
+import Image from 'next/image';
 
 function Counter({ to, suffix = '', float = false }: { to: number; suffix?: string; float?: boolean }) {
   const ref = useRef<HTMLSpanElement>(null);
@@ -31,7 +32,8 @@ const items = [
     label: '相談者の満足度',
     sub: '「相談してよかった」と回答',
     bg: 'bg-pop-red',
-    sticker: 'すごい'
+    sticker: 'すごい',
+    icon: '/images/icons/thumbs-up.png'
   },
   {
     n: 30,
@@ -39,7 +41,8 @@ const items = [
     label: '毎月のご紹介実績',
     sub: '業種を問わず幅広く対応',
     bg: 'bg-pop-blue',
-    sticker: '毎月!!'
+    sticker: '毎月!!',
+    icon: null
   },
   {
     n: 1.2,
@@ -48,7 +51,8 @@ const items = [
     sub: '内定者ベース／2025年実績',
     float: true,
     bg: 'bg-pop-ink',
-    sticker: 'UP↑'
+    sticker: 'UP↑',
+    icon: null
   }
 ];
 
@@ -97,8 +101,21 @@ export default function Stats() {
                   <div aria-hidden className="absolute inset-0 bg-halftone-white opacity-25" />
                   <div className="relative flex items-end justify-between gap-3">
                     <div className="flex-1">
-                      <div className="font-pop text-[14px] tracking-wide">
-                        {s.label}
+                      <div className="flex items-center gap-2">
+                        {s.icon && (
+                          <span className="grid h-9 w-9 place-items-center overflow-hidden rounded-full border-[2px] border-pop-ink bg-white shadow-comic">
+                            <Image
+                              src={s.icon}
+                              alt=""
+                              width={80}
+                              height={80}
+                              className="h-[28px] w-[28px] object-contain"
+                            />
+                          </span>
+                        )}
+                        <div className="font-pop text-[14px] tracking-wide">
+                          {s.label}
+                        </div>
                       </div>
                       <div className="mt-1 text-[11.5px] leading-relaxed opacity-90">
                         {s.sub}

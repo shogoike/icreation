@@ -1,6 +1,7 @@
 'use client';
 
 import { motion } from 'framer-motion';
+import Image from 'next/image';
 import { ArrowRight } from 'lucide-react';
 
 export default function Hero() {
@@ -80,9 +81,16 @@ export default function Hero() {
             transition={{ delay: 0.6, type: 'spring' }}
             className="relative -mr-2 flex w-[44%] flex-col items-center"
           >
-            <div className="relative flex h-[110px] w-[110px] items-center justify-center rounded-2xl border-[3px] border-pop-ink bg-white shadow-comic-lg">
+            <div className="relative flex h-[110px] w-[110px] items-center justify-center overflow-hidden rounded-2xl border-[3px] border-pop-ink bg-white shadow-comic-lg">
               <div className="absolute inset-1 rounded-xl bg-halftone-red" />
-              <span className="relative font-pop text-[44px]">💰</span>
+              <Image
+                src="/images/icons/money.gif"
+                alt=""
+                width={200}
+                height={200}
+                unoptimized
+                className="relative h-[88px] w-[88px] object-contain"
+              />
               <span className="absolute -right-2 -top-2 inline-block rotate-[12deg] rounded-md bg-pop-yellow px-1.5 py-0.5 font-pop text-[9px] text-pop-ink shadow-comic">
                 MAX!!
               </span>
@@ -117,9 +125,15 @@ export default function Hero() {
             transition={{ delay: 0.6, type: 'spring' }}
             className="relative -ml-2 flex w-[44%] flex-col items-center"
           >
-            <div className="relative flex h-[110px] w-[110px] items-center justify-center rounded-2xl border-[3px] border-pop-ink bg-white shadow-comic-lg">
+            <div className="relative flex h-[110px] w-[110px] items-center justify-center overflow-hidden rounded-2xl border-[3px] border-pop-ink bg-white shadow-comic-lg">
               <div className="absolute inset-1 rounded-xl bg-halftone-blue" />
-              <span className="relative font-pop text-[44px]">🌿</span>
+              <Image
+                src="/images/icons/nature.png"
+                alt=""
+                width={200}
+                height={200}
+                className="relative h-[88px] w-[88px] object-contain"
+              />
               <span className="absolute -left-2 -top-2 inline-block rotate-[-12deg] rounded-md bg-pop-yellow px-1.5 py-0.5 font-pop text-[9px] text-pop-ink shadow-comic">
                 CHILL!!
               </span>

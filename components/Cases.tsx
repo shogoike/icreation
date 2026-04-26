@@ -1,6 +1,7 @@
 'use client';
 
 import { motion } from 'framer-motion';
+import Image from 'next/image';
 
 type Case = {
   attr: string;
@@ -8,7 +9,7 @@ type Case = {
   after: { role: string; salary: string };
   quote: string;
   side: 'salary' | 'worklife';
-  emoji: string;
+  icon: string;
 };
 
 const cases: Case[] = [
@@ -18,7 +19,7 @@ const cases: Case[] = [
     after: { role: 'ITスタートアップ・CS', salary: '560万' },
     quote: '条件だけじゃなくて、働き方まで整理できた。',
     side: 'worklife',
-    emoji: '🚀'
+    icon: '/images/icons/person-laptop.png'
   },
   {
     attr: '30代前半 / 事務',
@@ -26,7 +27,7 @@ const cases: Case[] = [
     after: { role: 'SaaSカスタマーサクセス', salary: '480万' },
     quote: '押しつけ感がなくて自分のペースで進めた。',
     side: 'salary',
-    emoji: '💡'
+    icon: '/images/icons/person-card.png'
   },
   {
     attr: '30代後半 / 販売',
@@ -34,7 +35,7 @@ const cases: Case[] = [
     after: { role: '人材コンサル・マネージャー', salary: '620万' },
     quote: '強みを言語化してくれて、自信を持って面接に。',
     side: 'salary',
-    emoji: '🏆'
+    icon: '/images/icons/person-point.png'
   }
 ];
 
@@ -87,8 +88,14 @@ export default function Cases() {
                 <div className={`relative ${cardBg} p-4 text-white`}>
                   <div aria-hidden className="absolute inset-0 bg-halftone-white opacity-20" />
                   <div className="relative flex items-center gap-3">
-                    <span className="grid h-12 w-12 place-items-center rounded-2xl border-[3px] border-pop-ink bg-white text-[24px] shadow-comic">
-                      {c.emoji}
+                    <span className="grid h-14 w-14 place-items-center overflow-hidden rounded-2xl border-[3px] border-pop-ink bg-white shadow-comic">
+                      <Image
+                        src={c.icon}
+                        alt=""
+                        width={120}
+                        height={120}
+                        className="h-[52px] w-[52px] object-contain"
+                      />
                     </span>
                     <div>
                       <div className="font-pop text-[11px] text-pop-yellow drop-shadow-[1px_1px_0_#1A1A1A]">
