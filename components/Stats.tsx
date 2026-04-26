@@ -42,7 +42,7 @@ const items = [
     sub: '業種を問わず幅広く対応',
     bg: 'bg-pop-blue',
     sticker: '毎月!!',
-    icon: null
+    icon: '/images/icons/confetti.png'
   },
   {
     n: 1.2,
@@ -52,7 +52,7 @@ const items = [
     float: true,
     bg: 'bg-pop-ink',
     sticker: 'UP↑',
-    icon: null
+    icon: '/images/icons/money.png'
   }
 ];
 
